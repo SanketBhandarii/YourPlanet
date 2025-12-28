@@ -18,7 +18,6 @@ router.post("/give/thought", async (req, res) => {
     }
 
     const today = new Date().toISOString().slice(0, 10);
-    // checking mood
     const mood = await getMood(thought);
 
     const User = await UserModel.create({
@@ -36,7 +35,6 @@ router.post("/give/thought", async (req, res) => {
 
     res.cookie("anonId", anonId, {
       httpOnly: true,
-      //   secure: true,
       sameSite: "strict",
       maxAge: 1000 * 60 * 60 * 24,
     });

@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const SummarySchema = new mongoose.Schema({
   date: {
-    type: String, // "YYYY-MM-DD"
+    type: String,
     required: true,
-    unique: true
+    unique: true,
   },
 
   summary: { type: String, required: true },
@@ -21,23 +21,23 @@ const SummarySchema = new mongoose.Schema({
     northAmerica: String,
     southAmerica: String,
     australia: String,
-    antarctica: String
+    antarctica: String,
   },
 
   happiestCityPerCountry: {
     type: Map,
-    of: String
+    of: String,
   },
 
   saddestCityPerCountry: {
     type: Map,
-    of: String
+    of: String,
   },
 
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 export default mongoose.model("Summary", SummarySchema);

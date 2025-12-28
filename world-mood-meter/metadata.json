@@ -1,0 +1,7 @@
+{
+  "name": "World Mood Meter",
+  "description": "A live interactive globe tracking the collective consciousness of humanity using AI-driven mood analysis.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

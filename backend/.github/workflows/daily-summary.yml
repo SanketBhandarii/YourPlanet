@@ -1,0 +1,16 @@
+name: Daily Summary Generation
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate-summary:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Call Summary API
+        run: |
+          curl -X POST https://localhost:3000/api/summary/generate \
+          -H "Content-Type: application/json"

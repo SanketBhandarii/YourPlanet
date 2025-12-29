@@ -19,6 +19,7 @@ router.post("/generate", async (req, res) => {
     }
 
     const thoughts = await UserModel.find({ date: yesterday });
+    
     if (thoughts.length === 0) {
       const noDataSummary = await SummaryModel.create({
         date: yesterday,
@@ -46,9 +47,6 @@ router.post("/generate", async (req, res) => {
         message: "Summary created for day with no data",
         summary: noDataSummary,
       });
-    }
-    if (thoughts.length === 0) {
-      return res.status(400).json({ message: "No data for yesterday" });
     }
 
     const continentData = {};

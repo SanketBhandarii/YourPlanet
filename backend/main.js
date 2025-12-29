@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://yoursplanet.vercel.app/'],
+  origin: ['http://localhost:3000', 'https://yoursplanet.vercel.app'],
   credentials: true
 }));
 app.use(cookieParser());

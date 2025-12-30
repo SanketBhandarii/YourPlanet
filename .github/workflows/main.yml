@@ -1,0 +1,16 @@
+name: Daily Summary Generation
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate-summary:
+    runs-on: ubuntu-latest
+    env:
+      SUMMARY_API_URL: ${{ secrets.SUMMARY_API_URL }}
+    steps:
+      - name: Call Summary API
+        run: |
+          curl --fail --silent --show-error -X POST "$SUMMARY_API_URL/generate" -H "Content-Type: application/json" -d "{\"trigger\":\"github-cron\",\"repo\":\"$GITHUB_REPOSITORY\",\"run_id\":\"$GITHUB_RUN_ID\"}"

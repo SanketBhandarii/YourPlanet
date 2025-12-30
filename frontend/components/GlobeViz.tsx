@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import * as THREE from 'three';
@@ -50,11 +49,12 @@ const GlobeViz: React.FC<GlobeVizProps> = ({ onLocationSelect, newVibeLocation, 
       camera.updateProjectionMatrix();
 
       controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.1;
+      controls.autoRotateSpeed = -0.0001;
       controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
+      controls.dampingFactor = 0.08;
       controls.minDistance = 180;
       controls.maxDistance = 800;
+      controls.rotateSpeed = 0.5;
 
       const starGeometry = new THREE.BufferGeometry();
       const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1.2 });
@@ -134,13 +134,13 @@ const GlobeViz: React.FC<GlobeVizProps> = ({ onLocationSelect, newVibeLocation, 
         lat: selectedLocation.latitude,
         lng: selectedLocation.longitude,
         altitude: targetAltitude
-      }, 1800);
+      }, 2500);
 
       const controls = globeEl.current.controls();
       controls.autoRotate = false;
       const timeout = setTimeout(() => {
         controls.autoRotate = true;
-      }, 12000);
+      }, 15000);
       return () => clearTimeout(timeout);
     }
   }, [selectedLocation]);

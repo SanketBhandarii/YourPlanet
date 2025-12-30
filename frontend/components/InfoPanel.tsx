@@ -205,9 +205,9 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ summary, selectedLocation, onVibe
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <StatCard label="Happiest Country" value={summary.happiestCountry} />
-                <StatCard label="Most Stressed Country" value={summary.saddestCountry} muted />
+                <StatCard label="Least Happy Country" value={summary.saddestCountry} muted />
                 <StatCard label="Happiest Continent" value={summary.happiestContinent} />
-                <StatCard label="Most Stressed Continent" value={summary.saddestContinent} muted />
+                <StatCard label="Least Happy Continent" value={summary.saddestContinent} muted />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

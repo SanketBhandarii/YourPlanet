@@ -1,11 +1,11 @@
 name: Daily Summary Generation
 
-   on:
+on:
      schedule:
        - cron: '30 0 * * *'
      workflow_dispatch:
 
-   jobs:
+jobs:
      generate-summary:
        runs-on: ubuntu-latest
        

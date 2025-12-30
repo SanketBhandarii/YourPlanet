@@ -1,16 +1,22 @@
 name: Daily Summary Generation
 
 on:
-     schedule:
-       - cron: '30 0 * * *'
-     workflow_dispatch:
+  schedule:
+    - cron: '30 0 * * *'  # 00:30 UTC daily
+  workflow_dispatch:
 
 jobs:
-     generate-summary:
-       runs-on: ubuntu-latest
-       
-       steps:
-         - name: Call Summary API
-           run: |
-             curl -X POST https://yourplanet.onrender.com/generate \
-             -H "Content-Type: application/json"
+  generate-summary:
+    runs-on: ubuntu-latest
+    env:
+      SUMMARY_API_URL: ${{ secrets.SUMMARY_API_URL }}
+      SUMMARY_API_TOKEN: ${{ secrets.SUMMARY_API_TOKEN }}
+    steps:
+      - name: Call Summary API
+        run: |
+          # POST a small JSON payload to trigger generation. Replace or extend payload as needed.
+          curl --fail --silent --show-error \
+            -X POST "$SUMMARY_API_URL/generate" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $SUMMARY_API_TOKEN" \
+            -d '{"trigger":"github-cron","repo":"${GITHUB_REPOSITORY}","run_id":"'"${GITHUB_RUN_ID}"'"}'
